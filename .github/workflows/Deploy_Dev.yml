@@ -1,10 +1,12 @@
-name: PipelineFlask
+name: Pipeline Render
 
 on:
   push:
-    branches: [ "Prod" ]
+    branches: [ "dev" ]
   pull_request:
-    branches: [ "Prod" ]
+    branches: [ "dev" ]
+ 
+  
 
 jobs:
   build:
