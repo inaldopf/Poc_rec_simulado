@@ -1,0 +1,19 @@
+name: Deploy Web Rec
+
+on:
+  push:
+    branches: ["Prod"]
+
+jobs:
+  deploy:
+  
+    runs-on: ubuntu-latest
+
+    
+    steps:
+      - name: Acesso EC2
+        run: |
+           echo "${{secrets.KEY_G}}" > webserver.pem && chmod 600 webserver.pem
+           ssh -o StrictHostKeyChecking=no -i "webserver.pem" ubuntu@ec2-54-243-52-244.compute-1.amazonaws.com "
+               cd /var/www/html &&
+               git pull "
