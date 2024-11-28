@@ -1,0 +1,20 @@
+name: Deploy Web Rec
+
+on:
+  push:
+    branches: ["Prod"]
+
+jobs:
+  deploy:
+  
+    runs-on: ubuntu-latest
+
+    
+    steps:
+      - name: Acesso EC2
+        run: |
+           echo "${{secrets.KEY_AWS}}" > webserver.pem && chmod 600 webserver.pem
+           ssh -o StrictHostKeyChecking=no -i "webserver.pem" ubuntu@ec2-18-210-154-7.compute-1.amazonaws.com "
+               cd /var/www/html/Poc_rec_simulado
+               sudo git pull "
+                
